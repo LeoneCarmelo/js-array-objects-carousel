@@ -55,10 +55,7 @@ const containerEl = document.querySelector('.container')
 //containerEl.append(image)
 
 
-/* Milestone 1:
-
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo. */
+//Milestone 1 e 2
 
 
 // Select the active image
@@ -67,9 +64,13 @@ let image = ''
 let title = ''
 let text = ''
 const pictures = images.forEach((element, index) => {
+    //get image
     image += `<img src="./assets/${element.image}" class="${index === activeImage ? 'visible' : ''}">`
+    //get title
     title += `<span class="${index === activeImage ? 'visible' : ''}">${element.title}</span>`
+    //get text
     text += `<span  class="text ${index === activeImage ? 'visible' : ''}">${element.text}</span>`
+    //print all to DOM
     containerEl.innerHTML = image
     containerEl.insertAdjacentHTML('afterbegin', title)
     containerEl.insertAdjacentHTML('beforeend', text)
@@ -93,6 +94,7 @@ arrowRight.style.rotate = '90deg'
 arrowRight.innerHTML = `<i class="fa-solid fa-angle-up"></i>`
 containerEl.insertAdjacentElement('beforeend', arrowRight)
 
+
 //listen for click Right
 arrowRight.addEventListener('click', function() {
     //select all the image
@@ -113,6 +115,12 @@ arrowRight.addEventListener('click', function() {
     const currentText = textTag[activeImage]
     //remove visible class
     currentText.classList.remove('visible')
+    //select all the container of the tiny image
+    const allContImages = document.querySelectorAll('#thumbnails > .cont-tiny-images')
+    //select the current container of the tiny image
+    let currentContImages = allContImages[activeImage]
+    //remove selected class
+    currentContImages.classList.remove('selected')
     //increase activeImage variable
     if(activeImage === images.length - 1){
         activeImage = 0
@@ -131,6 +139,10 @@ arrowRight.addEventListener('click', function() {
     const nextTitle = titleTag[activeImage]
     //add visible class
     nextTitle.classList.add('visible')
+    //create another variable for the next contImage
+    const nextContImage = allContImages[activeImage]
+    // add selected class to the nextContImage
+    nextContImage.classList.add('selected')
 })
 
 //listen for click Left
@@ -153,6 +165,12 @@ arrowLeft.addEventListener('click', function(){
     const currentText = textTag[activeImage]
     //remove visible class
     currentText.classList.remove('visible')
+    //select all the container of the tiny image
+    const allContImages = document.querySelectorAll('#thumbnails > .cont-tiny-images')
+    //select the current container of the tiny image
+    let currentContImages = allContImages[activeImage]
+    //remove selected class
+    currentContImages.classList.remove('selected')
     //Decraese activeImage
     if (activeImage === 0) {
         activeImage = images.length - 1
@@ -171,6 +189,28 @@ arrowLeft.addEventListener('click', function(){
     const nextTitle = titleTag[activeImage]
     //add visible class
     nextTitle.classList.add('visible')
+    //create another variable for the next contImage
+    const nextContImage = allContImages[activeImage]
+    // add selected class to the nextContImage
+    nextContImage.classList.add('selected')
 })
 
+//create thumbnails
+const thumbnails = document.createElement('div')
+thumbnails.id = 'thumbnails'
+containerEl.insertAdjacentElement('afterbegin', thumbnails)
 
+
+//create container tiny images
+let tinyPictures = images.forEach(element => {
+    const contTinyImages = document.createElement('div')
+    contTinyImages.classList.add('cont-tiny-images')
+    contTinyImages.style.backgroundImage = `url(../assets/${element.image})`
+    thumbnails.insertAdjacentElement('beforeend', contTinyImages)
+});
+
+//select all the container of the tiny image
+const allContImages = document.querySelectorAll('#thumbnails > .cont-tiny-images')
+//select the current container of the tiny image
+let currentContImages = allContImages[activeImage]
+currentContImages.classList.add('selected')

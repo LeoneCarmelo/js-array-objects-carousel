@@ -58,3 +58,23 @@ span.text {
     text-shadow: none;
     font-weight: 700;
 }
+
+#thumbnails {
+    width:200px;
+    height: 100%;
+    position:absolute;
+    right:0;
+    top:0;
+    background-color: black;
+}
+
+.cont-tiny-images {
+    width:100%;
+    height: calc(100% / 5);
+    display: block;
+    background-size: cover;
+    background-position: center;
+}
+#thumbnails > .cont-tiny-images:not(.selected) {
+    opacity:0.5;
+}

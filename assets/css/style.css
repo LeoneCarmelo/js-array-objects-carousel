@@ -37,6 +37,16 @@ button {
     padding: 0.25rem 0.5rem;
 }
 
+.stop {
+    bottom:20px;
+}
+
+.reverse {
+    bottom: 20px;
+    right:450px;
+}
+
+
 span {
     position: absolute;
     top:0;

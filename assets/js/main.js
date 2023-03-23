@@ -220,3 +220,32 @@ currentContImages.classList.add('selected')
 let autoplay = setInterval(function() {
     arrowRight.click()
 }, 3000)
+
+//Add Bonus 3
+//create button to stop autoplay
+const btnStop = document.createElement('button')
+btnStop.textContent = 'Stop'
+btnStop.classList.add('stop')
+//print button to Dom
+containerEl.insertAdjacentElement('afterend', btnStop)
+
+
+//create button for reverse autoplay
+const reverse = document.createElement('button')
+reverse.textContent = 'Reverse Autoplay'
+reverse.classList.add('reverse')
+//print button to DOM
+containerEl.insertAdjacentElement('afterend', reverse)
+
+let reverseAutoplay
+reverse.addEventListener('click', function() {
+    reverseAutoplay = setInterval(function() {
+        arrowLeft.click()
+    }, 3000)
+})
+
+
+btnStop.addEventListener('click', function() {
+    clearInterval(autoplay)
+    clearInterval(reverseAutoplay)
+})

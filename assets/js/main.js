@@ -60,13 +60,19 @@ const containerEl = document.querySelector('.container')
 Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
 Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo. */
 
+
 // Select the active image
 let activeImage = 0
 let image = ''
+let title = ''
+let text = ''
 const pictures = images.forEach((element, index) => {
     image += `<img src="./assets/${element.image}" class="${index === activeImage ? 'visible' : ''}">`
-    console.log(image)
+    title += `<span class="${index === activeImage ? 'visible' : ''}">${element.title}</span>`
+    text += `<span  class="text ${index === activeImage ? 'visible' : ''}">${element.text}</span>`
     containerEl.innerHTML = image
+    containerEl.insertAdjacentHTML('afterbegin', title)
+    containerEl.insertAdjacentHTML('beforeend', text)
 });
 
 // create arrow Left
@@ -95,6 +101,12 @@ arrowRight.addEventListener('click', function() {
     const currentImage = contImage[activeImage]
     //remove visible class
     currentImage.classList.remove('visible')
+    // select the text tag
+    const textTag = document.querySelectorAll('.container > .span:text')
+    //select the current text
+    const currentText = textTag[activeImage]
+    //remove visible class
+    currentText.classList.remove('visible')
     //increase activeImage variable
     if(activeImage === images.length - 1){
         activeImage = 0
@@ -105,6 +117,10 @@ arrowRight.addEventListener('click', function() {
     const nextImage = contImage[activeImage]
     // add visible class to nextImage
     nextImage.classList.add('visible')
+    //create another cariable for the text
+    const nextText = textTag[activeImage]
+    //add visible class
+    nextText.classList.add('visible')
 })
 
 //listen for click Left
@@ -115,14 +131,26 @@ arrowLeft.addEventListener('click', function(){
     const currentImage = contImage[activeImage]
     //remove visible class
     currentImage.classList.remove('visible')
-    //Decrease activeImage variable
+    // select the text tag
+    const textTag = document.querySelectorAll('.container > .span:text')
+    //select the current text
+    const currentText = textTag[activeImage]
+    //remove visible class
+    currentText.classList.remove('visible')
+    //Decraese activeImage
     if (activeImage === 0) {
         activeImage = images.length - 1
     } else {
         activeImage--
     }
     //create another variable for the next image
-    let nextImage = contImage[activeImage]
+    const nextImage = contImage[activeImage]
     // add visible class to nextImage
     nextImage.classList.add('visible')
+     //create another cariable for the text
+     const nextText = textTag[activeImage]
+     //add visible class
+     nextText.classList.add('visible')
 })
+
+

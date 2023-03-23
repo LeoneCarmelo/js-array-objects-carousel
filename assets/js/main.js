@@ -101,6 +101,12 @@ arrowRight.addEventListener('click', function() {
     const currentImage = contImage[activeImage]
     //remove visible class
     currentImage.classList.remove('visible')
+    // select the title tag
+    const titleTag = document.querySelectorAll('.container > span')
+    // select the current title
+    const currentTitle = titleTag[activeImage]
+    //remove visible class
+    currentTitle.classList.remove('visible')
     // select the text tag
     const textTag = document.querySelectorAll('.container > span.text')
     //select the current text
@@ -121,6 +127,10 @@ arrowRight.addEventListener('click', function() {
     const nextText = textTag[activeImage]
     //add visible class
     nextText.classList.add('visible')
+    //create another variable for the title text
+    const nextTitle = titleTag[activeImage]
+    //add visible class
+    nextTitle.classList.add('visible')
 })
 
 //listen for click Left
@@ -131,6 +141,12 @@ arrowLeft.addEventListener('click', function(){
     const currentImage = contImage[activeImage]
     //remove visible class
     currentImage.classList.remove('visible')
+    // select the title tag
+    const titleTag = document.querySelectorAll('.container > span')
+    // select the current title
+    const currentTitle = titleTag[activeImage]
+    //remove visible class
+    currentTitle.classList.remove('visible')
     // select the text tag
     const textTag = document.querySelectorAll('.container > span.text')
     //select the current text
@@ -147,10 +163,14 @@ arrowLeft.addEventListener('click', function(){
     const nextImage = contImage[activeImage]
     // add visible class to nextImage
     nextImage.classList.add('visible')
-     //create another cariable for the text
-     const nextText = textTag[activeImage]
-     //add visible class
-     nextText.classList.add('visible')
+    //create another cariable for the text
+    const nextText = textTag[activeImage]
+    //add visible class
+    nextText.classList.add('visible')
+    //create another variable for the title text
+    const nextTitle = titleTag[activeImage]
+    //add visible class
+    nextTitle.classList.add('visible')
 })
 
 

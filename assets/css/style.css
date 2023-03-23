@@ -26,3 +26,12 @@ body {
     object-fit: cover;
     object-position: right; 
 }
+
+.container > img:not(.visible) {
+    display: none;
+}
+
+button {
+    position:absolute;
+    padding: 0.25rem 0.5rem;
+}

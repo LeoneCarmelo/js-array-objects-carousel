@@ -42,10 +42,87 @@ const images = [
 ];
 
 /* Milestone 0:
+
 Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider. */
 
-const image = document.createElement('img')
-image.src = `./assets/${images[0].image}`
-document.querySelector('.container').append(image)
+// create img tag
+//const imageEl = document.createElement('img') 
+// set src of the tag selecting the first image of the images Array
+//image.src = `./assets/${images[0].image}` 
+//import container from DOM
+const containerEl = document.querySelector('.container')
+//append the iage on the container
+//containerEl.append(image)
 
 
+/* Milestone 1:
+
+Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
+Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo. */
+
+// Select the active image
+let activeImage = 0
+let image = ''
+const pictures = images.forEach((element, index) => {
+    image += `<img src="./assets/${element.image}" class="${index === activeImage ? 'visible' : ''}">`
+    console.log(image)
+    containerEl.innerHTML = image
+});
+
+// create arrow Left
+const arrowLeft = document.createElement('button')
+arrowLeft.style.top = '50%'
+arrowLeft.style.left = '0'
+arrowLeft.style.zIndex = '1'
+arrowLeft.style.rotate = '-90deg'
+arrowLeft.innerHTML = `<i class="fa-solid fa-angle-up"></i>`
+containerEl.insertAdjacentElement('afterbegin', arrowLeft)
+
+// create arrow Right
+const arrowRight = document.createElement('button')
+arrowRight.style.top = '50%'
+arrowRight.style.right = '0'
+arrowRight.style.zIndex = '1'
+arrowRight.style.rotate = '90deg'
+arrowRight.innerHTML = `<i class="fa-solid fa-angle-up"></i>`
+containerEl.insertAdjacentElement('beforeend', arrowRight)
+
+//listen for click Right
+arrowRight.addEventListener('click', function() {
+    //select all the image
+    const contImage = document.querySelectorAll('.container > img')
+    //select the current image
+    const currentImage = contImage[activeImage]
+    //remove visible class
+    currentImage.classList.remove('visible')
+    //increase activeImage variable
+    if(activeImage === images.length - 1){
+        activeImage = 0
+    } else {
+        activeImage++
+    }
+    //create another variable for the next image
+    const nextImage = contImage[activeImage]
+    // add visible class to nextImage
+    nextImage.classList.add('visible')
+})
+
+//listen for click Left
+arrowLeft.addEventListener('click', function(){     
+    //select all the image
+    const contImage = document.querySelectorAll('.container > img')
+    //select the current image
+    const currentImage = contImage[activeImage]
+    //remove visible class
+    currentImage.classList.remove('visible')
+    //Decrease activeImage variable
+    if (activeImage === 0) {
+        activeImage = images.length - 1
+    } else {
+        activeImage--
+    }
+    //create another variable for the next image
+    let nextImage = contImage[activeImage]
+    // add visible class to nextImage
+    nextImage.classList.add('visible')
+})

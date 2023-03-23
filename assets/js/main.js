@@ -102,7 +102,7 @@ arrowRight.addEventListener('click', function() {
     //remove visible class
     currentImage.classList.remove('visible')
     // select the text tag
-    const textTag = document.querySelectorAll('.container > .span:text')
+    const textTag = document.querySelectorAll('.container > span.text')
     //select the current text
     const currentText = textTag[activeImage]
     //remove visible class
@@ -132,7 +132,7 @@ arrowLeft.addEventListener('click', function(){
     //remove visible class
     currentImage.classList.remove('visible')
     // select the text tag
-    const textTag = document.querySelectorAll('.container > .span:text')
+    const textTag = document.querySelectorAll('.container > span.text')
     //select the current text
     const currentText = textTag[activeImage]
     //remove visible class

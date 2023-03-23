@@ -214,3 +214,9 @@ const allContImages = document.querySelectorAll('#thumbnails > .cont-tiny-images
 //select the current container of the tiny image
 let currentContImages = allContImages[activeImage]
 currentContImages.classList.add('selected')
+
+
+//Add Bonus 2
+let autoplay = setInterval(function() {
+    arrowRight.click()
+}, 3000)

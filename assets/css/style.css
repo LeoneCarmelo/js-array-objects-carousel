@@ -27,11 +27,32 @@ body {
     object-position: right; 
 }
 
-.container > img:not(.visible) {
+.container > img:not(.visible),
+.container > span:not(.visible) {
     display: none;
 }
 
 button {
     position:absolute;
     padding: 0.25rem 0.5rem;
+}
+
+span {
+    position: absolute;
+    top:0;
+    left: 30%;
+    z-index: 1;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color:white;
+    text-shadow: 2px 1px black,
+    -1px -1px black;
+}
+
+span.text {
+    top:90%;
+    left:1rem;
+    font-size: 1rem;
+    font-weight:500;
 }
